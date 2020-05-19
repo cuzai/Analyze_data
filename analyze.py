@@ -63,6 +63,20 @@ df.drop('apt', inplace = True, axis = 1)
 df = df.rename({'평균평형' : 'apt_size'}, axis = 1)
 df = df.rename({'평균시세' : 'apt_price'}, axis = 1)
 
+print(df['age'].unique())
+
+df.loc[ df['age'] == "70세이상", 'age' ] = 7
+df.loc[ df['age'] == '60~69' , 'age'] = 6
+df.loc[ df['age'] == '50~59' , 'age'] = 5
+df.loc[ df['age'] == '40~49' , 'age'] = 4
+df.loc[ df['age'] == '30~39' , 'age'] = 3
+df.loc[ df['age'] == '20~29' , 'age'] = 2
+df.loc[ df['age'] == '19세이하' , 'age'] = 1
+
+df['age'] = df['age'].astype(int)
+
+df.dropna(subset = ['apt_price'], inplace = True)
+print(df['apt_price'].isna().sum())
 
 
-print(df)
+
